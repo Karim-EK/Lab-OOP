@@ -9,7 +9,7 @@ public class TestBankAccount {
         /*
          * 1) Creare l' AccountHolder relativo a Andrea Rossi con id 1
          */
-        AccountHolder andreaR = new AccountHolder("Andrea", "Rossi", 1);
+        AccountHolder andreaRossi = new AccountHolder("Andrea", "Rossi", 1);
         /*
          * 2) Creare l' AccountHolder relativo a Alex Bianchi con id 2
          */
