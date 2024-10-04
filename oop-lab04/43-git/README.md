@@ -20,7 +20,6 @@ per confrontarlo con le soluzioni.
 
 ### Si noti che c'è un file rigenerabile (`HelloWorld.class`). Si costruisca una lista di file ignorati che ignori tutti i file con estensione `.class`
 
-
 ### Si osservi lo stato del repository
 
 ### Si crei un nuovo commit che tracci il la ignore list, aggiungendo allo stage i file necessari. Si osservi sempre lo stato del repository dopo l'esecuzione di un comando
