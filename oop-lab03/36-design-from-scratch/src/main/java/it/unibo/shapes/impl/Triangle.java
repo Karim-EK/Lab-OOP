@@ -4,28 +4,28 @@ import it.unibo.shapes.api.Polygon;
 
 public class Triangle implements Polygon {
 
-    final static int EDGE_NUMBER = 3;
-    final double l1;
-    final double l2;
-    final double l3;
+    private final static int EDGE_NUMBER = 3;
+    private final double side1;
+    private final double side2;
+    private final double side3;
 
-    public Triangle(double l1, double l2, double l3) {
-        this.l1 = l1;
-        this.l2 = l2;
-        this.l3 = l3;
+    public Triangle(double side1, double side2, double side3) {
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
     }
 
-    public Triangle(double l1, double l2) {
-        this(l1, l2, l2);
+    public Triangle(double side1, double side2) {
+        this(side1, side2, side2);
     }
 
-    public Triangle(double l1) {
-        this(l1, l1, l1);
+    public Triangle(double side1) {
+        this(side1, side1, side1);
     }
 
     @Override
     public double getPerimeter() {
-        return l1 + l2 + l3;
+        return side1 + side2 + side3;
     }
 
     private double getSemiPerimeter() {
@@ -34,8 +34,8 @@ public class Triangle implements Polygon {
 
     @Override
     public double getSurface() {
-        return Math.sqrt(getSemiPerimeter() * (getSemiPerimeter() - l1) 
-        * (getSemiPerimeter() - l2) * (getSemiPerimeter() - l3));
+        return Math.sqrt(getSemiPerimeter() * (getSemiPerimeter() - side1) 
+        * (getSemiPerimeter() - side2) * (getSemiPerimeter() - side3));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Triangle implements Polygon {
 
     @Override
     public String toString() {
-        return "Triangle [l1=" + l1 + ", l2=" + l2 + ", l3=" + l3 + ", getPerimeter()=" + getPerimeter()
+        return "Triangle [l1=" + side1 + ", l2=" + side2 + ", l3=" + side3 + ", getPerimeter()=" + getPerimeter()
                 + ", getSurface()=" + getSurface() + ", getEdgeCounts()=" + getEdgeCounts() + "]";
     }
 }

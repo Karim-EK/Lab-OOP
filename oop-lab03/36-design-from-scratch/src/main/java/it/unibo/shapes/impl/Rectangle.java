@@ -2,25 +2,25 @@ package it.unibo.shapes.impl;
 
 import it.unibo.shapes.api.Polygon;
 
-public class Rectangle implements Polygon{
+public class Rectangle implements Polygon {
 
-    final static int EDGE_NUMBER = 4;
-    final double l1;
-    final double l2;
+    private final static int EDGE_NUMBER = 4;
+    private final double side1;
+    private final double side2;
 
-    public Rectangle(double l1, double l2) {
-        this.l1 = l1;
-        this.l2 = l2;
+    public Rectangle(double side1, double side2) {
+        this.side1 = side1;
+        this.side2 = side2;
     }
 
     @Override
     public double getPerimeter() {
-        return 2 * l1 + 2 * l2;
+        return 2 * (side1 + side2); 
     }
 
     @Override
     public double getSurface() {
-        return l1 * l2;
+        return side1 * side2;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Rectangle implements Polygon{
 
     @Override
     public String toString() {
-        return "Rectangle [l1=" + l1 + ", l2=" + l2 + ", getPerimeter()=" + getPerimeter() + ", getSurface()="
+        return "Rectangle [l1=" + side1 + ", l2=" + side2 + ", getPerimeter()=" + getPerimeter() + ", getSurface()="
                 + getSurface() + ", getEdgeCounts()=" + getEdgeCounts() + "]";
     }
 }

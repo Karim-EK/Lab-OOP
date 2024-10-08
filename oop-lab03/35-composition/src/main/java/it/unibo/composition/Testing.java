@@ -24,6 +24,7 @@ public class Testing {
         exam1.registerStudent(stud2);
         exam2.registerStudent(stud2);
         exam1.registerStudent(stud3);
+        
         exam2.registerStudent(stud3);
         // 6) Stampare in stdout la rapresentazione in stringa dei due esami
         System.out.println(exam1.toString());

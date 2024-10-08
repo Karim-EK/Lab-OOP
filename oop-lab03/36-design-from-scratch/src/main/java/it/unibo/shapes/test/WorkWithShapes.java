@@ -26,10 +26,23 @@ public class WorkWithShapes {
         System.out.println(rectangle.toString());
         System.out.println();
         
-        Triangle triangle = new Triangle(5);
-        triangle.getPerimeter();
-        triangle.getSurface();
-        System.out.println(triangle.toString());
+        Triangle equilater = new Triangle(5);
+        Triangle scalen = new Triangle(2,5,6);
+        Triangle isoscele = new Triangle(1,5);
+
+        scalen.getPerimeter();
+        scalen.getSurface();
+        System.out.println(scalen.toString());
+        System.out.println();
+
+        equilater.getPerimeter();
+        equilater.getSurface();
+        System.out.println(equilater.toString());
+        System.out.println();
+
+        isoscele.getPerimeter();
+        isoscele.getSurface();
+        System.out.println(isoscele.toString());
         System.out.println();
     }
 }
