@@ -1,14 +1,17 @@
 package it.unibo.design.robot.impl;
 
+import java.util.*;
+import it.unibo.design.robot.api.ModularRobot;
 import it.unibo.design.robot.api.Robot;
 import it.unibo.design.robot.environment.api.Position2D;
 import it.unibo.design.robot.environment.impl.RobotEnvironment;
 import it.unibo.design.robot.environment.impl.RobotPosition;
+import it.unibo.design.robot.api.Component;
 
 /**
  * Models a generic Robot
  */
-public class BaseRobot implements Robot {
+public class BaseRobot implements ModularRobot {
 
     public static final double BATTERY_FULL = 100;
     public static final double MOVEMENT_DELTA_CONSUMPTION = 1.2;
@@ -17,6 +20,7 @@ public class BaseRobot implements Robot {
     private double batteryLevel;
     private final RobotEnvironment environment;
     private final String robotName;
+    private List<Component> components;
 
     /**
      * Creates a new robot with a full battery
@@ -28,6 +32,7 @@ public class BaseRobot implements Robot {
         this.environment = new RobotEnvironment(new RobotPosition(0, 0));
         this.robotName = robotName;
         this.batteryLevel = BATTERY_FULL;
+        this.components = new ArrayList<Component>();
     }
 
     /**
@@ -150,5 +155,23 @@ public class BaseRobot implements Robot {
 
     public String toString() {
         return robotName;
+    }
+
+    @Override
+    public void attachComponent(Component component) {
+        this.components.add(component);
+    }
+
+    @Override
+    public void detachComponent(Component component) {
+        this.components.remove(component);
+    }
+
+    @Override
+    public void activateComponents() {
+        for (Component component : components) {
+            component.activate();
+            this.consumeBattery(component.getBatteryConsuption());
+        }
     }
 }
