@@ -3,15 +3,15 @@ package it.unibo.composition;
 import java.util.Arrays;
 
 public class Exam {
-    final int id;
-    final int maxStudents;
-    int registeredStudents;
-    final String courseName;
-    Professor professor;
-    ExamRoom room;
-    Student[] students;
+    private final int id;
+    private final int maxStudents;
+    private int registeredStudents;
+    private final String courseName;
+    private final Professor professor;
+    private final ExamRoom room;
+    private final Student[] students;
     
-    public Exam(int id, int maxStudents, String courseName, Professor professor, ExamRoom room) {
+    public Exam(final int id, final int maxStudents, final String courseName, final Professor professor, final ExamRoom room) {
         this.id = id;
         this.maxStudents = maxStudents;
         this.courseName = courseName;

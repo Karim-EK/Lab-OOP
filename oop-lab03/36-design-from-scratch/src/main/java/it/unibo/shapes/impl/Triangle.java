@@ -9,17 +9,17 @@ public class Triangle implements Polygon {
     private final double side2;
     private final double side3;
 
-    public Triangle(double side1, double side2, double side3) {
+    public Triangle(final double side1, final double side2, final double side3) {
         this.side1 = side1;
         this.side2 = side2;
         this.side3 = side3;
     }
 
-    public Triangle(double side1, double side2) {
+    public Triangle(final double side1, final double side2) {
         this(side1, side2, side2);
     }
 
-    public Triangle(double side1) {
+    public Triangle(final double side1) {
         this(side1, side1, side1);
     }
 

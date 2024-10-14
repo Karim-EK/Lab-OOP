@@ -55,7 +55,7 @@ abstract class AbstractBankAccount implements BankAccount {
     }
 
     public void withdraw(final int id, final double amount){
-        if (isSameId(id)) {
+        if (isSameId(id) && isWithdrawAllowed(amount)) {
             this.balance = this.balance - amount;
             this.incrementTransactions();
         }
@@ -93,7 +93,7 @@ abstract class AbstractBankAccount implements BankAccount {
         return TRANSACTION_FEE;
     }
 
-    protected abstract boolean isWithdrawAllowe(double amount);
+    protected abstract boolean isWithdrawAllowed(double amount);
 
     protected abstract double cumputeFee();
 

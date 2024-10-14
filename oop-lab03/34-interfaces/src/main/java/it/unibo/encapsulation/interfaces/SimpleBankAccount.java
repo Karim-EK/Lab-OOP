@@ -12,7 +12,7 @@ public class SimpleBankAccount implements BankAccount {
     private double balance;
     private int transactions;
 
-    static final double ATM_TRANSACTION_FEE = 1;
+    private static final double ATM_TRANSACTION_FEE = 1;
 
     /*
      * Creare un costruttore pubblico che prenda in ingresso un intero (ossia l'id

@@ -7,17 +7,18 @@ public class StrictBankAccount implements BankAccount {
     
     private int transactions;
     
-    static final double ATM_TRANSACTION_FEE = 1;
-    static final double MANAGMENT_FEE = 5;
+    private static final double ATM_TRANSACTION_FEE = 1;
+    private static final double MANAGMENT_FEE = 5;
+    private static final double TRANSACTIONS_FEE = 0.1;
     
-    public StrictBankAccount(int id, double balance) {
+    public StrictBankAccount(final int id, final double balance) {
         this.id = id;
         this.balance = balance;
         this.transactions = 0;
     }
 
     @Override
-    public void withdraw(int id, double amount) {
+    public void withdraw(final int id, final double amount) {
         if (canWithdraw(amount) && hasSameId(id)) {
             this.balance = this.balance - amount;
             increaseOperations();
@@ -25,7 +26,7 @@ public class StrictBankAccount implements BankAccount {
     }
 
     @Override
-    public void deposit(int id, double amount) {
+    public void deposit(final int id, final double amount) {
         if (hasSameId(id)) {
             this.balance = this.balance + amount;
             increaseOperations();
@@ -33,21 +34,21 @@ public class StrictBankAccount implements BankAccount {
     }
 
     @Override
-    public void depositFromATM(int id, double amount) {
+    public void depositFromATM(final int id, final double amount) {
         deposit(id, amount);
         payATMFees();
     }
 
     @Override
-    public void withdrawFromATM(int id, double amount) {
+    public void withdrawFromATM(final int id, final double amount) {
         withdraw(id, amount);
         payATMFees();
     }
 
     @Override
-    public void chargeManagementFees(int id) {
+    public void chargeManagementFees(final int id) {
         if (hasSameId(id)) {
-            this.balance = this.balance - MANAGMENT_FEE + (transactions * 0.1);
+            this.balance = this.balance - MANAGMENT_FEE + (transactions * TRANSACTIONS_FEE);
         }
     }
 

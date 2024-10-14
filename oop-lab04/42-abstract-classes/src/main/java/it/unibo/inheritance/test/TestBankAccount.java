@@ -66,10 +66,10 @@ public class TestBankAccount {
         /*
          * Change the two accounts to verify that the behaviour of restricted and simple bank account are preserved
          */
-        final BankAccount restricted = null;
-        final BankAccount extendedStrict = new RestrictedBankAccount(aBianchi, 0);
-        final BankAccount simpleBankAccount = new ClassicBankAccount(aRossi, 0);
-        final BankAccount classicBankAccount = null;
+        final BankAccount restricted = new RestrictedBankAccount(aBianchi, 0);
+        final BankAccount extendedStrict = new ExtendedStrictBankAccount(aBianchi, 0);
+        final BankAccount simpleBankAccount = new SimpleBankAccount(aRossi, 0);
+        final BankAccount classicBankAccount = new ClassicBankAccount(aRossi, 0);
         requireAccountsToWorkTheSameWay(restricted, extendedStrict);
         requireAccountsToWorkTheSameWay(simpleBankAccount, classicBankAccount);
     }

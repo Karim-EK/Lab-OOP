@@ -5,20 +5,20 @@ import it.unibo.shapes.api.Polygon;
 public class Square implements Polygon {
 
     final static int EDGE_NUMBER = 4;
-    final double edge;
+    final double side;
 
-    public Square(double edge) {
-        this.edge = edge;
+    public Square(final double side) {
+        this.side = side;
     }
 
     @Override
     public double getPerimeter() {
-        return EDGE_NUMBER * edge; 
+        return EDGE_NUMBER * side; 
     }
 
     @Override
     public double getSurface() {
-        return edge * edge;
+        return side * side;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Square implements Polygon {
 
     @Override
     public String toString() {
-        return "Square [edge=" + edge + ", getPerimeter()=" + getPerimeter() + ", getSurface()=" + getSurface()
+        return "Square [edge=" + side + ", getPerimeter()=" + getPerimeter() + ", getSurface()=" + getSurface()
                 + ", getEdgeCounts()=" + getEdgeCounts() + "]";
     }
 }

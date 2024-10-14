@@ -8,7 +8,7 @@ public class Rectangle implements Polygon {
     private final double side1;
     private final double side2;
 
-    public Rectangle(double side1, double side2) {
+    public Rectangle(final double side1, final double side2) {
         this.side1 = side1;
         this.side2 = side2;
     }

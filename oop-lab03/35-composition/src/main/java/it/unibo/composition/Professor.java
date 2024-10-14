@@ -1,16 +1,13 @@
 package it.unibo.composition;
 
 public class Professor implements User {
+    private final int id;
+    private final String name;
+    private final String surname;
+    private final String password;
+    private String[] corses;
 
-    final int id;
-    final String name;
-    final String surname;
-    String password;
-    String[] corses;
-
-    
-
-    public Professor(int id, String name, String surname) {
+    public Professor(final int id, final String name, final String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
