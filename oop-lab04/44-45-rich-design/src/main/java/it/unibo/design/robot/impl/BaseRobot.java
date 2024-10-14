@@ -160,11 +160,13 @@ public class BaseRobot implements ModularRobot {
     @Override
     public void attachComponent(Component component) {
         this.components.add(component);
+        component.attach(this);
     }
 
     @Override
     public void detachComponent(Component component) {
         this.components.remove(component);
+        component.detach();
     }
 
     @Override

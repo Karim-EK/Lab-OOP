@@ -20,21 +20,6 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
 
     @Override
     public boolean pickUp() {
-        // // if is not holding anything, grab with left arm
-        // if (this.objectsHolding == 0) {
-        //     properlyGrab(leftArm);
-        //     return true;
-        // }
-        // // if one arm is free it's the right
-        // if (this.objectsHolding == 1) {
-        //     properlyGrab(rightArm);
-        //     return true;
-        // }
-        // // if both are busy
-        // if (this.objectsHolding > 1) {
-        //     return false;
-        // }
-
         switch (this.objectsHolding) {
             case 0:
                 properlyGrab(this.leftArm);

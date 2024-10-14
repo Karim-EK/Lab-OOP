@@ -4,6 +4,12 @@ public interface Component {
     
     public boolean isOn();
 
+    public void attach(ModularRobot robot);
+
+    public void detach();
+
+    public boolean isAttached();
+
     public void activate();
 
     public double getBatteryConsuption();
