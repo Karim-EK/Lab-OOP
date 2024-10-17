@@ -23,8 +23,12 @@ public final class UseCollection {
         /*
          * Unless you need to perform specific operations, always use the most
          * generic interface.
+         * 
          * If we use `var` instead of specifying Collection<Integer> what type
          * will `coll` have?
+         * 
+        *   Se non specifico il tipo nelle <> della new var sarà il più generico possibile (Object),
+        *   altrimenti avrà il tipo specificato nelle <> della new.
          */
         final Collection<Integer> coll = new ArrayList<>();
         coll.addAll(List.of(1, 3, 5, 7, 9, 11)); // var-args

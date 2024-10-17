@@ -6,7 +6,7 @@ import java.util.Set;
  * This interface models a warehouse.
  * 
  */
-public interface Warehouse {
+public interface Warehouse<T extends Product> {
 
     /**
      * Adds a product, assuming there is no other with same name already there.
@@ -14,7 +14,7 @@ public interface Warehouse {
      * @param p
      *            the product to add
      */
-    void addProduct(Product p);
+    void addProduct(T p);
 
     /**
      * This method allows to get all the registered product names. It can be
@@ -32,7 +32,7 @@ public interface Warehouse {
      * 
      * @return a collection of all registered products.
      */
-    Set<Product> allProducts();
+    Set<T> allProducts();
 
     /**
      * This method checks whether a product is stored in the {@link Warehouse}.
@@ -42,7 +42,7 @@ public interface Warehouse {
      *            the product
      * @return true if the {@link Warehouse} contains the {@link Product}.
      */
-    boolean containsProduct(Product p);
+    boolean containsProduct(T p);
 
     /**
      * Given a product, returns its quantity in stock.

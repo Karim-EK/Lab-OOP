@@ -1,6 +1,5 @@
 package it.unibo.collections.design;
 
-import it.unibo.collections.design.api.Product;
 import it.unibo.collections.design.api.Warehouse;
 
 import java.util.List;
@@ -35,12 +34,15 @@ public final class UseOrderedWarehouse {
         /*
          * 7. Fix the construction of objects and make sure that the test passes, before asking for a correction.
          */
-        final Product p1 = null; // new ComparableProduct("Apple", 100);
-        final Product p2 = null; // new ComparableProduct("Banana", 30);
-        final Product p3 = null; // new ComparableProduct("Watermelon", 10);
-        final Warehouse warehouse = null; // new OrderedWarehouse();
+
+        //Ho dovuto cambiare il tipo da Product a ComparableProduct
+        final ComparableProduct p1 = new ComparableProduct("Apple", 100);
+        final ComparableProduct p2 = new ComparableProduct("Banana", 30);
+        final ComparableProduct p3 = new ComparableProduct("Watermelon", 10);
+        final Warehouse<ComparableProduct> warehouse = new OrderedWarehouse();
         // Populate the warehouse
         warehouse.addProduct(p3);
+        warehouse.allProducts();
         assertContentEqualsInOrder(List.of(p3), warehouse.allProducts());
         warehouse.addProduct(p1);
         assertContentEqualsInOrder(List.of(p1, p3), warehouse.allProducts());
