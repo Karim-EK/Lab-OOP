@@ -7,7 +7,7 @@ public class OrderedWarehouse extends WarehouseImpl<ComparableProduct> {
 
     @Override
     public Set<ComparableProduct> allProducts() {
-        Set<ComparableProduct> defensiveCopy = new TreeSet<>(this.getProductSet());
+        final Set<ComparableProduct> defensiveCopy = new TreeSet<>(this.getProductSet());
         System.out.println(defensiveCopy);
         return  defensiveCopy;
     }

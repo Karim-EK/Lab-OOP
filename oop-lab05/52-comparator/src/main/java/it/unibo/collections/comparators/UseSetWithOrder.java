@@ -1,6 +1,5 @@
 package it.unibo.collections.comparators;
 
-import java.util.Set;
 import java.util.TreeSet;
 
 import it.unibo.collections.MyComparator;
@@ -30,7 +29,7 @@ public final class UseSetWithOrder {
          * The comparator does not need to deal with the case of Strings which are not parseable as doubles.
          */
         
-        Collection<String> treeSet = new TreeSet<>(new MyComparator());
+        final Collection<String> treeSet = new TreeSet<>(new MyComparator());
         /*
          * 2) Inserts in the set a hundred strings containing randomly generated numbers
          * (use Math.random(), and convert to String appropriately)

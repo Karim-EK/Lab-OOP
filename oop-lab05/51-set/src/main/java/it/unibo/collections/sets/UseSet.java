@@ -26,12 +26,12 @@ public final class UseSet {
          *
          * 1) Builds a TreeSet containing Strings
          */
-        Collection<String> treeSet = new TreeSet<>();         
+        final Collection<String> treeSet = new TreeSet<>();         
         /*
          * 2) Populates such Collection with all the Strings representing numbers ranging from "1" to
          * "20" (both included)
          */
-        for(int i = 1; i <= 20; i++) {
+        for(int i = 1; i <= ELEMS; i++) {
             treeSet.add(Integer.toString(i));
         }
         /*
@@ -42,9 +42,8 @@ public final class UseSet {
          * 4) Removes all those strings whose represented number is divisible by three.
          * Note: the method removeIf(Predicate) is not allowed.
          */
-        Iterator<String> iterator = treeSet.iterator();
-        while (iterator.hasNext()) {
-            if (Integer.parseInt((String)iterator.next()) % 3 == 0) {
+        for (final Iterator<String> iterator = treeSet.iterator(); iterator.hasNext();) {
+            if (Integer.parseInt(iterator.next()) % 3 == 0) {
                 iterator.remove();
             }
         }
@@ -58,20 +57,21 @@ public final class UseSet {
         /*
          * 5) Prints the content of the Set using a for-each construct
          */
-        for (String element : treeSet) {
+        for (final String element: treeSet) {
             System.out.print(element + " ");
         }
         /*
          * 6) Verifies whether all the numbers left in the set are even
          */
-        boolean isEven = true;
-        for (String elememt : treeSet) {
+        boolean allEven = true;
+        for (final Iterator<String> iterator = treeSet.iterator(); allEven && iterator.hasNext();) {
+            final var elememt = iterator.next();
             if (Integer.parseInt(elememt) % 2 != 0) {
-                isEven = false;
+                allEven = false;
                 System.out.println("Found odd element: " + elememt);
             }
         }
-        if (isEven) {
+        if (allEven) {
             System.out.println("All values in the collection are even");
         }
     }

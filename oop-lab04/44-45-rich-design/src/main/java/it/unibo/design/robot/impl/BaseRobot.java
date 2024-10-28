@@ -2,7 +2,6 @@ package it.unibo.design.robot.impl;
 
 import java.util.*;
 import it.unibo.design.robot.api.ModularRobot;
-import it.unibo.design.robot.api.Robot;
 import it.unibo.design.robot.environment.api.Position2D;
 import it.unibo.design.robot.environment.impl.RobotEnvironment;
 import it.unibo.design.robot.environment.impl.RobotPosition;

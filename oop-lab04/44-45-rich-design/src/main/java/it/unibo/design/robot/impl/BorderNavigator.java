@@ -1,6 +1,12 @@
 package it.unibo.design.robot.impl;
 
-public class BoarderNavigator extends AbstractComponent {
+public class BorderNavigator extends AbstractComponent {
+
+    private static final double BATTERY_CONSUPTION = 0;
+
+    public BorderNavigator() {
+        super(BATTERY_CONSUPTION);
+    }
 
     @Override
     public void activate() {

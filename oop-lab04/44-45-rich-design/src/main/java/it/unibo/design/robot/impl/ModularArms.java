@@ -1,15 +1,17 @@
 package it.unibo.design.robot.impl;
 
-public class ModularArms extends AbstractComponent {
+import it.unibo.design.robot.api.CommandableComponent;
+
+public class ModularArms extends AbstractComponent implements CommandableComponent {
 
     private static final double BATTERY_CONSUPTION = 0.3;
+    private final String[] availableCommands = {"pick", "drop"};
 
     private boolean isCarryingObjects;
 
     public ModularArms() {
-        super();
+        super(BATTERY_CONSUPTION);
         this.isCarryingObjects = false;
-        setActualConsume(BATTERY_CONSUPTION);
     }
 
     @Override
@@ -25,14 +27,29 @@ public class ModularArms extends AbstractComponent {
     }
     
     public void pick() {
-        if (!isCarryingObjects) {
-           isCarryingObjects = true;
-        }
+        System.out.println("Picking up object...");
+        isCarryingObjects = true;
     }
 
     public void drop() {
-        if (isCarryingObjects) {
-            this.isCarryingObjects = false;
+        System.out.println("Dropping object...");
+        this.isCarryingObjects = false;
+    }
+
+    @Override
+    public String[] availableCommands() {
+        return this.availableCommands;
+    }
+
+    @Override
+    public void sendCommand(String command) {
+        final String parsedCommand = command.toLowerCase();
+        if (parsedCommand.equals("pick") ) {
+            pick();
+        } else if (parsedCommand.equals("drop")) {
+            drop();
+        } else {
+            System.out.println("Command not found");
         }
     }
 }

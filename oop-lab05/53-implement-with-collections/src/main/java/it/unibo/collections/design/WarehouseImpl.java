@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
 
 public class WarehouseImpl<T extends Product> implements Warehouse<T>{
 
-    private Collection<T> productSet;
+    private final Collection<T> productSet;
 
     
     public WarehouseImpl() {
@@ -18,14 +18,14 @@ public class WarehouseImpl<T extends Product> implements Warehouse<T>{
     }
 
     @Override
-    public void addProduct(T p) {
+    public void addProduct(final T p) {
         this.productSet.add(p);
     }
 
     @Override
     public Set<String> allNames() {
-        Set<String> namesSet = new LinkedHashSet<>();
-        for (Product product : this.productSet) {
+        final Set<String> namesSet = new LinkedHashSet<>();
+        for (final Product product : this.productSet) {
             namesSet.add(product.getName());
         }
         return namesSet;
@@ -35,18 +35,18 @@ public class WarehouseImpl<T extends Product> implements Warehouse<T>{
     // Non ritorno il riferimento alla Collection originale, 
     // ma ritorno una copia difensiva.
     public Set<T> allProducts() {
-        Set<T> defensiveCopy = new LinkedHashSet<>(this.productSet);
+        final Set<T> defensiveCopy = new LinkedHashSet<>(this.productSet);
         return  defensiveCopy;
     }
 
     @Override
-    public boolean containsProduct(T p) {
+    public boolean containsProduct(final T p) {
         return this.productSet.contains(p);
     }
 
     @Override
-    public double getQuantity(String name) {
-        for (var product : this.productSet) {
+    public double getQuantity(final String name) {
+        for (final var product : this.productSet) {
             if (product.getName().equals(name)) {
                 return product.getQuantity();
             }

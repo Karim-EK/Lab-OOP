@@ -5,14 +5,15 @@ import it.unibo.design.robot.api.ModularRobot;
 
 public abstract class AbstractComponent implements Component {
 
-    private double batteryConsuption;
+    private final double batteryConsuption;
     private boolean isOn;
     private boolean isAttached;
     private ModularRobot robot;
 
-    public AbstractComponent() {
+    public AbstractComponent(final double batteryConsuption) {
         this.isOn = false;
         this.isAttached = false;
+        this.batteryConsuption = batteryConsuption;
     }
 
     protected boolean isOperational() {
@@ -45,10 +46,6 @@ public abstract class AbstractComponent implements Component {
     @Override
     public void turnOff() {
         this.isOn = false;
-    }
-    
-    protected void setActualConsume(double batteryConsuption) {
-        this.batteryConsuption = batteryConsuption;
     }
 
     @Override
