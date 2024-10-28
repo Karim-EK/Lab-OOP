@@ -9,28 +9,36 @@ import it.unibo.generics.graph.api.Graph;
 
 public class GraphImpl<X> implements Graph<X> {
 
-    Set<List<X>> nodeSet;
+    // all nodes & edges in the graph
+    Set<X> nodeSet;
+    Set<List<X>> edgeSet;
 
     public GraphImpl() {
         this.nodeSet = new HashSet<>();
+        this.edgeSet = new HashSet<>();
     }
 
     @Override
     public void addNode(X node) {
-        var newNode = new ArrayList<>()
-        nodeSet.add();
+        nodeSet.add(node);
     }
 
     @Override
     public void addEdge(X source, X target) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addEdge'");
+        if ( source != null || target != null) {
+            List<X> edge = new ArrayList<>();
+            edge.add(source);
+            edge.add(target);
+            // TODO: Controllo se nodo già presente per estendere grafo
+            if (!edgeSet.contains(edge)) {
+                edgeSet.add(edge);
+            }
+        }
     }
 
     @Override
     public Set<X> nodeSet() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nodeSet'");
+        return new HashSet<>(nodeSet);
     }
 
     @Override
