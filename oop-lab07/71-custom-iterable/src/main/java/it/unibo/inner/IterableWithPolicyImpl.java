@@ -10,18 +10,18 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T>{
     private T[] array;
     private Predicate<T> predicate;
 
-    public IterableWithPolicyImpl(T[] array) {
+    public IterableWithPolicyImpl(final T[] array) {
         this.array = array;
         this.predicate = new Predicate<T>() {
 
             @Override
-            public boolean test(T elem) {
+            public boolean test(final T elem) {
                 return true;
             }    
         };
     }
 
-    public IterableWithPolicyImpl(T[] array, Predicate<T> predicate) {
+    public IterableWithPolicyImpl(final T[] array, final Predicate<T> predicate) {
         this(array);
         this.predicate = predicate;
     }
@@ -32,7 +32,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T>{
     }
 
     @Override
-    public void setIterationPolicy(Predicate<T> filter) {
+    public void setIterationPolicy(final Predicate<T> filter) {
         this.predicate = filter;
     }
 

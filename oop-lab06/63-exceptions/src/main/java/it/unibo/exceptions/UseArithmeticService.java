@@ -50,7 +50,7 @@ public final class UseArithmeticService {
          */
         try {
             server.sendData(message);
-        } catch(IOException e) {
+        } catch(final IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -62,7 +62,7 @@ public final class UseArithmeticService {
          */
         try {
             return server.receiveResponse();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             return e.getMessage();
         }
     }

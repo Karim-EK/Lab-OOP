@@ -30,7 +30,7 @@ public final class UseListsAndMaps {
          */
         // NB: ho tipato l'array ad ArrayList<> invece che Collection<> perchè avere il tipo di una superclasse concede
         //     molti meno metodi; più sotto viene richiesto il metodo get(), ma Collection non ne dispone
-        ArrayList<Integer> arrayList = new ArrayList<>();
+        final List<Integer> arrayList = new ArrayList<>();
         for (int i = 1000; i < 2000; i++) {
             arrayList.add(i);
         }
@@ -40,20 +40,19 @@ public final class UseListsAndMaps {
          * the same contents of the list of point 1.
          */
         // NB: anche per LinkedList si applica lo stesso ragionamento, il metodo è addFirst()
-        LinkedList<Integer> linkedList = new LinkedList<>(arrayList);
+        final List<Integer> linkedList = new LinkedList<>(arrayList);
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
          * (Suggestion: use a temporary variable)
          */
-        int temporary = 0;
-        temporary = arrayList.get(0);
-        arrayList.set(0, arrayList.get(arrayList.size() + CORRECT_INDEXING));
-        arrayList.set(arrayList.size() + CORRECT_INDEXING, temporary);
+        final int temporary = arrayList.get(0);
+        arrayList.set(0, arrayList.get(arrayList.size() - 1));
+        arrayList.set(arrayList.size() - 1, temporary);
         /*
          * 4) Using a single for-each, print the contents of the arraylist.
          */
-        for (var integer : arrayList) {
+        for (final var integer: arrayList) {
             System.out.println(integer);
         }
         /*
@@ -63,15 +62,15 @@ public final class UseListsAndMaps {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
-        System.out.println("Adding " + ADD_TO_LIST_TEST + " to an ArryList...");
-        var array = startCounting();
+        System.out.println("Adding " + ADD_TO_LIST_TEST + " to an ArrayList...");
+        final var array = startCounting();
         for (int i = 0; i <= ADD_TO_LIST_TEST; i++) {
             arrayList.add(0, i);
         }
         terminateTest(array);
 
         System.out.println("Now the Linked List...");
-        var linked = startCounting();
+        final var linked = startCounting();
         for (int i = 0; i <= ADD_TO_LIST_TEST; i++) {
             linkedList.addFirst(i); 
         }
@@ -84,14 +83,14 @@ public final class UseListsAndMaps {
          */
         System.out.println("");
         System.out.println("Reading " + READ_TEST + " elements from the middle of ArrayList...");
-        var readArray = startCounting();
+        final var readArray = startCounting();
         for (int i = 0; i <= READ_TEST; i++) {
             arrayList.get((arrayList.size() + CORRECT_INDEXING) / 2);
         }
         terminateTest(readArray);
 
         System.out.println("Now LinkedList...");
-        var readLinked = startCounting();
+        final var readLinked = startCounting();
         for (int i = 0; i <= READ_TEST; i++) {
             linkedList.get((linkedList.size() + CORRECT_INDEXING) / 2);
         }
@@ -112,7 +111,7 @@ public final class UseListsAndMaps {
          *
          * Oceania -> 38,304,000
          */
-        Map<String,Long> worldMap = new HashMap<>();
+        final Map<String,Long> worldMap = new HashMap<>();
         worldMap.put("Africa", 1_110_635_000L);
         worldMap.put("Americas", 972_005_000L);
         worldMap.put("Antartica", 0L);
@@ -123,16 +122,17 @@ public final class UseListsAndMaps {
          * 8) Compute the population of the world
          */
         long totalPopulation = 0;
-        for (var continent : worldMap.values()) {
+        for (final var continent : worldMap.values()) {
             totalPopulation = totalPopulation + continent;
         }
         System.out.println("Total population: " + totalPopulation);
     }
+    
     private static long startCounting() {
             return System.currentTimeMillis();
     }
 
-    private static void terminateTest(long start) {
+    private static void terminateTest(final long start) {
         System.out.println("Time passed: " + (startCounting() - start) + "ms");
     }
 }

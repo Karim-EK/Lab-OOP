@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 
 import it.unibo.generics.graph.api.Graph;
 
@@ -14,7 +15,7 @@ public class GraphImpl<X> implements Graph<X> {
 
     // all nodes & edges in the graph
     Set<X> nodeSet;
-    Map<X,Set<X>> edges;
+    Map<X, Set<X>> edges;
 
     public GraphImpl() {
         this.nodeSet = new HashSet<>();
@@ -22,14 +23,14 @@ public class GraphImpl<X> implements Graph<X> {
     }
  
     @Override
-    public void addNode(X node) {
+    public void addNode(final X node) {
         if (!nodeSet.contains(node)) {
             nodeSet.add(node);
         }
     }
 
     @Override
-    public void addEdge(X source, X target) {
+    public void addEdge(final X source, final X target) {
         if ( source != null || target != null) {
             if (!nodeSet.contains(source)) {
                 addNode(source);
@@ -37,13 +38,12 @@ public class GraphImpl<X> implements Graph<X> {
             if (!nodeSet.contains(source)) {
                 addNode(target);
             }
-            if (edges.containsKey(source)) {
-                edges.get(source).add(target);
-            } else {
-                Set<X> adiacents = new HashSet<>();
-                adiacents.add(target);
-                edges.put(source, adiacents);
-            }
+            final var sourceEdges = edges.computeIfAbsent(source, new Function<X, Set<X>>() {
+                public java.util.Set<X> apply(final X t) {
+                    return new HashSet<>();
+                };
+            });
+            sourceEdges.add(target);
         }
     }
 
@@ -53,24 +53,22 @@ public class GraphImpl<X> implements Graph<X> {
     }
 
     @Override
-    public Set<X> linkedNodes(X node) {
+    public Set<X> linkedNodes(final X node) {
         return new HashSet<>(edges.get(node));
     }
 
     @Override
-    public List<X> getPath(X source, X target) {
+    public List<X> getPath(final X source, final X target) {
         if (!nodeSet.contains(source) || !nodeSet.contains(target)) {
-            return null; // Source or target node not found
+            return null;
         }
-
-        Map<X, X> parentMap = new HashMap<>();
-        Set<X> visited = new HashSet<>();
-        if (!dfs(source, target, parentMap, visited)) {
-            return null; // No path found
+        // adasdashfbah
+        final Map<X, X> parentMap = new HashMap<>();
+        if (!dfs(source, target, parentMap, new HashSet<>())) {
+            return null;
         }
-
-        // Reconstruct the path
-        List<X> path = new ArrayList<>();
+        // 
+        final List<X> path = new ArrayList<>();
         X current = target;
         while (current != null) {
             path.add(current);
@@ -80,13 +78,13 @@ public class GraphImpl<X> implements Graph<X> {
         return path;
     }
 
-    private boolean dfs(X current, X target, Map<X, X> parentMap, Set<X> visited) {
+    private boolean dfs(final X current, final X target, final Map<X, X> parentMap, final Set<X> visited) {
         if (current.equals(target)) {
             return true;
         }
 
         visited.add(current);
-        for (X neighbor : edges.get(current)) {
+        for (final X neighbor : edges.get(current)) {
             if (!visited.contains(neighbor)) {
                 parentMap.put(neighbor, current);
                 if (dfs(neighbor, target, parentMap, visited)) {
