@@ -40,7 +40,7 @@ public final class UseListsAndMaps {
          * the same contents of the list of point 1.
          */
         // NB: anche per LinkedList si applica lo stesso ragionamento, il metodo è addFirst()
-        final List<Integer> linkedList = new LinkedList<>(arrayList);
+        final LinkedList<Integer> linkedList = new LinkedList<>(arrayList);
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
