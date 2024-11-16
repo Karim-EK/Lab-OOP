@@ -1,6 +1,7 @@
 package it.unibo.composition;
 
 public class Professor implements User {
+    @SuppressWarnings("unused")
     private final int id;
     private final String name;
     private final String surname;

@@ -6,6 +6,7 @@ public class BasicArm {
     private static final double CONSUMPTION_4_DROPDOWN = 0.2;
 
     private boolean isGrabbing;
+    @SuppressWarnings("unused")
     final private String armName;
 
     public BasicArm(final String name) {

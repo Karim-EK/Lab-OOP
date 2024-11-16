@@ -8,6 +8,7 @@ public class TestSimpleBankAccount {
          */
     }
 
+    @SuppressWarnings("unused")
     public static void main(final String[] args) {
         // 1) Creare l' AccountHolder relativo a Andrea Rossi con id 1
         AccountHolder andreaR = new AccountHolder("Andrea", "Rossi", 1);

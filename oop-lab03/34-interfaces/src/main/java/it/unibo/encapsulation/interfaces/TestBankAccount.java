@@ -5,6 +5,7 @@ public class TestBankAccount {
     private TestBankAccount() {
     }
 
+    @SuppressWarnings("unused")
     public static void main(final String[] args) {
         /*
          * 1) Creare l' AccountHolder relativo a Andrea Rossi con id 1
