@@ -1,4 +1,9 @@
 package it.unibo.inner.test;
+<<<<<<< HEAD
+=======
+
+import java.util.ArrayList;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 import java.util.Collection;
 import java.util.Objects;
 
@@ -42,7 +47,11 @@ public final class Assertions {
 
     private static long iterableSize(Iterable<?> iter) {
         var counter = 0L;
+<<<<<<< HEAD
         for (@SuppressWarnings("unused") var elem : iter) {
+=======
+        for (var elem : iter) {
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
             counter++;
         }
         return counter;

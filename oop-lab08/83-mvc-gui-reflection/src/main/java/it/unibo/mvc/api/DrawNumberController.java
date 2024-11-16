@@ -27,5 +27,9 @@ public interface DrawNumberController {
      *
      * @param newView the view to be added
      */
+<<<<<<< HEAD
     void addViews(DrawNumberView ... newVie);
+=======
+    void addView(DrawNumberView newView);
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 }

@@ -4,6 +4,10 @@ import it.unibo.functional.api.Function;
 
 import java.util.ArrayList;
 import java.util.Collection;
+<<<<<<< HEAD
+=======
+import java.util.Collections;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +58,15 @@ public final class Transformers {
      * @param <O> output elements type
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
+<<<<<<< HEAD
         return null;
+=======
+        List<O> transormedList = new ArrayList<>();
+        for (var element : base) {
+            transormedList.add(transformer.call(element));
+        }
+        return Collections.unmodifiableList(transormedList);
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -70,7 +82,17 @@ public final class Transformers {
      * @param <I> type of the collection elements
      */
     public static <I> List<? extends I> flatten(final Iterable<? extends Collection<? extends I>> base) {
+<<<<<<< HEAD
         return null;
+=======
+        List<I> flatList = new ArrayList<>();
+        for (var collection : base) {
+            for (var element : collection) {
+                flatList.add(element);
+            }
+        }
+        return Collections.unmodifiableList(flatList);
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -87,7 +109,17 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> select(final Iterable<I> base, final Function<I, Boolean> test) {
+<<<<<<< HEAD
         return null;
+=======
+        List<I> finalList = new ArrayList<>();
+        for (var elem : base) {
+            if (test.call(elem)) {
+                finalList.add(elem);
+            }
+        }
+        return finalList;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -103,6 +135,16 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> reject(final Iterable<I> base, final Function<I, Boolean> test) {
+<<<<<<< HEAD
         return null;
+=======
+        List<I> finalList = new ArrayList<>();
+        for (var elem : base) {
+            if (!test.call(elem)) {
+                finalList.add(elem);
+            }
+        }
+        return finalList;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 }

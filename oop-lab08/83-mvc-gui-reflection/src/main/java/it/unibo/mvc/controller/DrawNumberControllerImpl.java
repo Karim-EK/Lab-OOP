@@ -4,9 +4,13 @@ import it.unibo.mvc.api.DrawNumber;
 import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+=======
+import java.util.Objects;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
 /**
  * This class implements the game controller. It orchestrates the game, exposes methods to its observers
@@ -15,7 +19,11 @@ import java.util.Set;
 public final class DrawNumberControllerImpl implements DrawNumberController {
 
     private final DrawNumber model;
+<<<<<<< HEAD
     private Set<DrawNumberView> views;
+=======
+    private DrawNumberView view;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
     /**
      * Builds a new game controller provided a game model.
@@ -24,6 +32,7 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
      */
     public DrawNumberControllerImpl(final DrawNumber model) {
         this.model = model;
+<<<<<<< HEAD
         this.views = new HashSet<>();
     }
 
@@ -42,13 +51,30 @@ public final class DrawNumberControllerImpl implements DrawNumberController {
         // this.view = view;
         // view.setController(this);
         // view.start();
+=======
+    }
+
+    @Override
+    public void addView(final DrawNumberView view) {
+        Objects.requireNonNull(view, "Cannot set a null view");
+        if (this.view != null) {
+            throw new IllegalStateException("The view is already set! Multiple views are not supported");
+        }
+        this.view = view;
+        view.setController(this);
+        view.start();
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     @Override
     public void newAttempt(final int n) {
+<<<<<<< HEAD
         for (var view : views) {
             Objects.requireNonNull(view, "There is no view attached!").result(model.attempt(n));
         }
+=======
+        Objects.requireNonNull(view, "There is no view attached!").result(model.attempt(n));
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     @Override

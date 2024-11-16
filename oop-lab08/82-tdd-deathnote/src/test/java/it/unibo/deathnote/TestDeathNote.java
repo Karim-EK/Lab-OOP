@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+<<<<<<< HEAD
+=======
+import java.lang.reflect.Executable;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
 import org.junit.jupiter.api.Test;
 
@@ -108,6 +112,7 @@ class TestDeathNote {
             
         });
    } 
+<<<<<<< HEAD
    @Test
    public void testTimeForDetails() throws InterruptedException {
         var deathnote = new DeathNoteImplementation();
@@ -138,4 +143,6 @@ class TestDeathNote {
             
         });
    }
+=======
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 }

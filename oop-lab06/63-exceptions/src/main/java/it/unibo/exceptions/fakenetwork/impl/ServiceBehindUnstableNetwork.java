@@ -32,10 +32,6 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
          */
         this.failProbability = failProbability;
         randomGenerator = new Random(randomSeed);
-        var randomNum = randomGenerator.nextDouble(0,1);
-        if (randomNum <= failProbability) {
-            throw new IllegalArgumentException("Hai fallito il check del " + (randomNum * 100) +  "%");
-        }
     }
 
     /**
@@ -61,7 +57,7 @@ public final class ServiceBehindUnstableNetwork implements NetworkComponent {
         } else {
             final var message = data + " is not a valid keyword (allowed: " + KEYWORDS + "), nor is a number";
             commandQueue.clear();
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(message, exceptionWhenParsedAsNumber);
             /*
              * This method, in this point, should throw an IllegalStateException.
              * Its cause, however, is the previous NumberFormatException.

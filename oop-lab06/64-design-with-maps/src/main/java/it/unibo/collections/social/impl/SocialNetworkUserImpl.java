@@ -36,7 +36,7 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      * In order to save the people followed by a user organized in groups, adopt
      * a generic-type Map:  think of what type of keys and values would best suit the requirements
      */
-    private Map<String,Set<U>> groupsMap;
+    private Map<String, Set<U>> groupsMap;
     /*
      * [CONSTRUCTORS]
      *
@@ -80,13 +80,12 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
         // if the group doesn't exist it will be created
-        if (groupsMap.containsKey(circle)) {
-            groupsMap.get(circle).add(user);
-        } else {
-            this.groupsMap.put(circle, new HashSet<U>());
-            groupsMap.get(circle).add(user);
+        var circleSet = groupsMap.get(circle);
+        if (circleSet == null) {
+            circleSet = new HashSet<U>();
+            this.groupsMap.put(circle, circleSet);
         }
-        return (groupsMap.get(circle).contains(user));
+        return !circleSet.add(user);
     }
 
     /**
@@ -96,18 +95,15 @@ public final class SocialNetworkUserImpl<U extends User> extends UserImpl implem
      */
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        if (groupsMap.containsKey(groupName)) {
-            return new HashSet<>(groupsMap.get(groupName));
-        } else {
-            return Collections.emptySet();
-        }
+        final var group = groupsMap.get(groupName);
+        return group == null ? Collections.emptySet() : Collections.unmodifiableSet(group);
     }
 
     @Override
     public List<U> getFollowedUsers() {
-        List<U> allFollowedUsers = new ArrayList<>();
-        for (var group : groupsMap.values()) {
-            for (var user : group) {
+        final List<U> allFollowedUsers = new ArrayList<>();
+        for (final var group : groupsMap.values()) {
+            for (final var user : group) {
                 allFollowedUsers.add(user);
             }
         }

@@ -17,8 +17,13 @@ public class DeathNoteImplementation implements DeathNote {
     private long startTimer;
     private long timePassed;
 
+<<<<<<< HEAD
     private static long TIME_LIMIT_FOR_CAUSE_OF_DEATH = -40;//-40
     private static long TIME_LIMIT_FOR_DETAILS_OF_DEATH = -6040; //-6040
+=======
+    private static long TIME_LIMIT_FOR_CAUSE_OF_DEATH = 40;
+    private static long TIME_LIMIT_FOR_DETAILS_OF_DEATH = 6040;
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
     public DeathNoteImplementation() {
         this.writtenNames = new HashSet<>();
@@ -58,7 +63,11 @@ public class DeathNoteImplementation implements DeathNote {
                 throw new IllegalStateException();
             }
             this.timePassed = timePassing(startTimer);
+<<<<<<< HEAD
             if (this.timePassed <= TIME_LIMIT_FOR_CAUSE_OF_DEATH) {
+=======
+            if (this.timePassed >= TIME_LIMIT_FOR_CAUSE_OF_DEATH) {
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
                 toBeKilled = null;
                 return false;
             } else {
@@ -81,7 +90,11 @@ public class DeathNoteImplementation implements DeathNote {
             throw new IllegalStateException();
         }
         this.timePassed = timePassing(startTimer);
+<<<<<<< HEAD
         if (this.timePassed <= TIME_LIMIT_FOR_DETAILS_OF_DEATH) {
+=======
+        if (this.timePassed >= TIME_LIMIT_FOR_DETAILS_OF_DEATH) {
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
             this.toBeKilled = null;
             return false;
         } else {
@@ -126,7 +139,11 @@ public class DeathNoteImplementation implements DeathNote {
     }
 
     private void correctActualTarget(long timeLimit) {
+<<<<<<< HEAD
         if (timePassing(startTimer) <= timeLimit) {
+=======
+        if (timePassing(startTimer) >= timeLimit) {
+>>>>>>> cad967d33059882af678708569ecd6aea47ffd76
             this.toBeKilled = null;
         }
     }
