@@ -1,22 +1,13 @@
-<<<<<<< HEAD
     package it.unibo.bank.impl;
-=======
-package it.unibo.bank.impl;
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
 import it.unibo.bank.api.AccountHolder;
 import it.unibo.bank.api.BankAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-<<<<<<< HEAD
 import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-=======
-
-import static org.junit.jupiter.api.Assertions.fail;
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
 
 /**
  * Test class for the {@link StrictBankAccount} class.
@@ -32,12 +23,8 @@ class TestStrictBankAccount {
      */
     @BeforeEach
     public void setUp() {
-<<<<<<< HEAD
         mRossi = new AccountHolder("Mario", "Rossi", 0);
         bankAccount = new StrictBankAccount(mRossi, 0);
-=======
-        fail("To be implemented");
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -45,13 +32,9 @@ class TestStrictBankAccount {
      */
     @Test
     public void testInitialization() {
-<<<<<<< HEAD
         assertEquals(0, bankAccount.getTransactionsCount());
         assertEquals(0, bankAccount.getBalance());
         assertEquals(0, bankAccount.getAccountHolder().getUserID());
-=======
-        fail("To be implemented");
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -59,12 +42,8 @@ class TestStrictBankAccount {
      */
     @Test
     public void testManagementFees() {
-<<<<<<< HEAD
         bankAccount.deposit(0, 100);
         assertEquals(100, bankAccount.getBalance());
-=======
-        fail("To be implemented");
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -72,7 +51,6 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-<<<<<<< HEAD
         assertThrows(IllegalArgumentException.class, new Executable() {
 
             @Override
@@ -81,9 +59,6 @@ class TestStrictBankAccount {
             }
             
         });
-=======
-        fail("To be implemented");
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 
     /**
@@ -91,7 +66,6 @@ class TestStrictBankAccount {
      */
     @Test
     public void testWithdrawingTooMuch() {
-<<<<<<< HEAD
         assertThrows(IllegalArgumentException.class, new Executable() {
 
             @Override
@@ -100,8 +74,5 @@ class TestStrictBankAccount {
             }
             
         });
-=======
-        fail("To be implemented");
->>>>>>> cad967d33059882af678708569ecd6aea47ffd76
     }
 }
