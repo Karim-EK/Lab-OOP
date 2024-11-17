@@ -1,22 +1,23 @@
 package it.unibo.mvc;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.List;
 import java.util.Random;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * This class is a simple application that writes a random number on a file.
@@ -34,6 +35,7 @@ public class BadIOGUI {
     private static final int PROPORTION = 5;
     private final Random randomGenerator = new Random();
     private final JFrame frame = new JFrame(TITLE);
+    private final File file = new File(PATH);
 
     /**
      * Creates a new BadIOGUI.
@@ -42,12 +44,38 @@ public class BadIOGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        final JPanel newPanel = new JPanel();
+        newPanel.setLayout(new BoxLayout(newPanel, BoxLayout.X_AXIS));
+        canvas.add(newPanel, BorderLayout.CENTER);
+        newPanel.add(write);
+        final JButton read = new JButton("Read");
+        newPanel.add(read);
         /*
          * Handlers
          */
+        read.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+            try (
+                // NB: la seguente cascata non funziona perché il contenuto del file txt è stato scritto
+                //     come stringe di testo e non come dati binari, quindi essendo scritto con UTF-8
+                //     posso utilizzare la cascata "più corta": FileReader->BufferedReader
+                // final FileInputStream fileIStream = new FileInputStream(file);
+                // final BufferedInputStream bufferedIStream = new BufferedInputStream(fileIStream);
+                // final DataInputStream dataISteam = new DataInputStream(bufferedIStream);
+                final FileReader fileReader = new FileReader(file);
+                final BufferedReader actualReader = new BufferedReader(fileReader);
+                ) {
+                    System.out.println(actualReader.readLine());
+                } catch (final Exception err) {
+                    err.printStackTrace();
+                }
+            }
+            
+        });
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -60,7 +88,7 @@ public class BadIOGUI {
                  */
                 try (PrintStream ps = new PrintStream(PATH, StandardCharsets.UTF_8)) {
                     ps.print(randomGenerator.nextInt());
-                } catch (IOException e1) {
+                } catch (final IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
@@ -81,6 +109,7 @@ public class BadIOGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
+        frame.pack();
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
