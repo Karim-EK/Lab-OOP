@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"it.unibo.mvc.api","l":"Controller"},{"p":"it.unibo.mvc","l":"ControllerImpl"},{"p":"it.unibo.mvc","l":"SimpleGUI"}]

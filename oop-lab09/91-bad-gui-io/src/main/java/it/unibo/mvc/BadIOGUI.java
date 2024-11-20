@@ -66,15 +66,14 @@ public class BadIOGUI {
                 // final FileInputStream fileIStream = new FileInputStream(file);
                 // final BufferedInputStream bufferedIStream = new BufferedInputStream(fileIStream);
                 // final DataInputStream dataISteam = new DataInputStream(bufferedIStream);
-                final FileReader fileReader = new FileReader(file);
-                final BufferedReader actualReader = new BufferedReader(fileReader);
+                FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
+                BufferedReader actualReader = new BufferedReader(fileReader);
                 ) {
-                    System.out.println(actualReader.readLine());
-                } catch (final Exception err) {
-                    err.printStackTrace();
+                    System.out.println(actualReader.readLine()); // NOPMD suppressed as it is a false positive
+                } catch (final IOException err) {
+                    err.printStackTrace();  // NOPMD suppressed as it is a false positive
                 }
             }
-            
         });
         write.addActionListener(new ActionListener() {
             @Override

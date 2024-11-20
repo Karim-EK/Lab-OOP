@@ -1,0 +1,10 @@
+-Xwerror '-quiet'
+-classpath 'C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\build\\classes\\java\\main;C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\build\\resources\\main;C:\\Users\\20kar\\.gradle\\caches\\modules-2\\files-2.1\\com.github.spotbugs\\spotbugs-annotations\\4.8.6\\1dcffed3e561ed32134a0dff4717f19bc2fdf4d8\\spotbugs-annotations-4.8.6.jar;C:\\Users\\20kar\\.gradle\\caches\\modules-2\\files-2.1\\com.google.code.findbugs\\jsr305\\3.0.2\\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\\jsr305-3.0.2.jar'
+-d 'C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\build\\docs\\javadoc'
+-doctitle '93-mvc-io API'
+-notimestamp 
+-quiet 
+-windowtitle '93-mvc-io API'
+'C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\src\\main\\java\\it\\unibo\\mvc\\api\\Controller.java'
+'C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\src\\main\\java\\it\\unibo\\mvc\\ControllerImpl.java'
+'C:\\Users\\20kar\\OneDrive\\Desktop\\LAB OOP\\oop-lab09\\93-mvc-io\\src\\main\\java\\it\\unibo\\mvc\\SimpleGUI.java'
