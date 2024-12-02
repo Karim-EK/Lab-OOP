@@ -1,13 +1,12 @@
 package it.unibo.oop.lab.streams;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -18,11 +17,17 @@ public final class MusicGroupImpl implements MusicGroup {
     private final Map<String, Integer> albums = new HashMap<>();
     private final Set<Song> songs = new HashSet<>();
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public void addAlbum(final String albumName, final int year) {
         this.albums.put(albumName, year);
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public void addSong(final String songName, final Optional<String> albumName, final double duration) {
         if (albumName.isPresent() && !this.albums.containsKey(albumName.get())) {
@@ -31,44 +36,87 @@ public final class MusicGroupImpl implements MusicGroup {
         this.songs.add(new MusicGroupImpl.Song(songName, albumName, duration));
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public Stream<String> orderedSongNames() {
-        return songs.stream().sorted((x,y) -> x.songName.compareTo(y.songName)).map(x -> x.songName);
+        return songs.stream()
+        .sorted((x, y) -> x.getSongName().compareTo(y.songName))
+        .map(Song :: getSongName);
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public Stream<String> albumNames() {
         return albums.keySet().stream();
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public Stream<String> albumInYear(final int year) {
-        return albums.entrySet().stream().filter(x -> x.getValue().equals(year)).map(x -> x.getKey());
+        return albums.entrySet().stream()
+        .filter(x -> x.getValue().equals(year))
+        .map(Map.Entry :: getKey);
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public int countSongs(final String albumName) {
-        return (int)songs.stream().filter(x -> x.albumName.orElse("").equals(albumName)).count();
+        return (int) songs.stream()
+        .filter(x -> x.getAlbumName().orElse("").equals(albumName))
+        .count();
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public int countSongsInNoAlbum() {
-        return (int)songs.stream().filter(x -> !x.albumName.isPresent()).count();
+        return (int) songs.stream()
+        .filter(x -> !x.getAlbumName().isPresent())
+        .count();
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public OptionalDouble averageDurationOfSongs(final String albumName) {
-        return songs.stream().filter(x -> x.albumName.orElse("").equals(albumName)).mapToDouble(x -> x.duration).average();
+        return songs.stream()
+        .filter(x -> x.getAlbumName().orElse("").equals(albumName))
+        .mapToDouble(Song :: getDuration)
+        .average();
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public Optional<String> longestSong() {
-        return songs.stream().max((x,y) ->Integer.valueOf((int)x.duration).compareTo((int)y.duration)).map(x -> x.songName);
+        return songs.stream()
+        .max((x, y) -> Integer.compare((int) x.getDuration(), (int) y.getDuration()))
+        .map(Song :: getSongName);
     }
 
+    /**
+     * {@inheritDoc}.
+     */
     @Override
     public Optional<String> longestAlbum() {
-        return null;
+        return albums.keySet().stream()
+        .max(Comparator.comparingDouble(album ->
+            songs.stream()
+            .filter(song -> song.getAlbumName().orElse("").equals(album))
+            .mapToDouble(Song :: getDuration)
+            .sum())
+        );
     }
 
     private static final class Song {
