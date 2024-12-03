@@ -48,10 +48,14 @@ public final class LambdaFilter extends JFrame {
 
         COUNT_LINES("Count lines", s -> Long.toString(s.lines().count())),
 
-        ORDERED_WORDS("Words in alpabetical order", s -> Arrays.stream(s.split(" "))
-            .sorted((x, y) -> x.compareTo(y)) // NOPMD
-            .toList()
-            .toString()),
+        ORDERED_WORDS(
+            "Words in alpabetical order",
+             s -> Arrays.stream(s.split("\\s+"))
+                .map(String::toLowerCase)
+                .sorted(String::compareTo)
+                .toList()
+                .toString()
+        ),
 
         WORDS_COUNTER("Count each word", s -> Arrays.stream(s.split(" "))
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
